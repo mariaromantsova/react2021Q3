@@ -1,39 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Card } from './components/Card/Card';
-import { SearchBar } from './components/SearchBar/SearchBar';
+import React, { useState } from 'react';
+import Card from './components/Card/Card';
+import Form from './components/Form/Form';
+import { CardModel } from './models/card-model';
 
 const App: React.FunctionComponent = () => {
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    fetch('./cards.json')
-      .then(res => res.json())
-      .then(data => setCards(data));
-  }, []);
+  const [formValues, setFormValues] = useState<CardModel[] | []>([]);
 
   return (
-    <div className="container mt-3">
-      <div className="d-flex flex-wrap align-items-center justify-content-center">
-        <SearchBar />
+    <div className="container mt-5 d-flex flex-column justify-content-center align-items-center">
+      <div className="col-4">
+        <Form setFormValues={setFormValues} />
       </div>
 
-      <div className="cards-container">
-        {cards.map(card => {
-          const { title, year, genres, description, directors, image } = card;
+      <main className="cards-container mt-3">
+        {formValues.map(formValue => {
+          const {
+            firstName,
+            lastName,
+            birthDate,
+            country,
+            agree,
+            getNotifications,
+          } = formValue;
 
           return (
             <Card
-              title={title}
-              year={year}
-              genres={genres}
-              description={description}
-              directors={directors}
-              image={image}
-              key={title}
+              firstName={firstName}
+              lastName={lastName}
+              birthDate={birthDate}
+              country={country}
+              agree={agree}
+              getNotifications={getNotifications}
+              key={birthDate}
             />
           );
         })}
-      </div>
+      </main>
     </div>
   );
 };

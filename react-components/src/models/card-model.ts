@@ -1,8 +1,8 @@
 export interface CardModel {
-  title: string;
-  year: string;
-  genres: string[];
-  description: string;
-  directors: string[];
-  image: string;
+  firstName?: string;
+  lastName?: string;
+  birthDate?: string;
+  country?: string;
+  agree?: boolean;
+  getNotifications?: boolean;
 }

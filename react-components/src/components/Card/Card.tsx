@@ -3,32 +3,33 @@ import { CardModel } from '../../models/card-model';
 import './Card.scss';
 
 const Card: React.FunctionComponent<CardModel> = ({
-  title,
-  year,
-  genres,
-  description,
-  directors,
-  image,
+  firstName,
+  lastName,
+  birthDate,
+  country,
+  agree,
+  getNotifications,
 }) => (
   <div className="card">
-    <img className="card-img-top" src={image} alt={title} />
-
     <div className="card-body">
-      <h3 className="card-title">{title}</h3>
-      <p className="card-text">
-        <small className="text-muted">{year}</small>
+      <p>
+        <b>First name:</b> {firstName}
       </p>
-      <ul className="directors">
-        {directors.map(director => (
-          <li key={director}>{director}</li>
-        ))}
-      </ul>
-      <p className="card-text">{description}</p>
-      <ul className="genres">
-        {genres.map(genre => (
-          <li key={genre}>{genre}</li>
-        ))}
-      </ul>
+      <p>
+        <b>Last name:</b> {lastName}
+      </p>
+      <p>
+        <b>Birth date:</b> {birthDate}
+      </p>
+      <p>
+        <b>Country:</b> {country}
+      </p>
+      <p>
+        <b>Agree: </b> {agree?.toString()}
+      </p>
+      <p>
+        <b>Get notifications: </b> {getNotifications?.toString()}
+      </p>
     </div>
   </div>
 );
