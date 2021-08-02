@@ -135,6 +135,7 @@ const Form: React.FunctionComponent<Props> = ({ setFormValues }) => {
           type="checkbox"
           id="getNotifications"
           name="getNotifications"
+          checked={getNotifications}
           onChange={() => setGetNotifications(prev => !prev)}
         />
       </div>
