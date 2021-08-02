@@ -1,40 +1,38 @@
 import React, { useState } from 'react';
 import Card from './components/Card/Card';
-import Form from './components/Form/Form';
+import SearchBar from './components/SearchBar/SearchBar';
 import { CardModel } from './models/card-model';
 
 const App: React.FunctionComponent = () => {
-  const [formValues, setFormValues] = useState<CardModel[] | []>([]);
+  const [movies, setMovies] = useState<CardModel[] | null>(null);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="container mt-5 d-flex flex-column justify-content-center align-items-center">
-      <div className="col-4">
-        <Form setFormValues={setFormValues} />
-      </div>
+      <SearchBar setMovies={setMovies} setLoading={setLoading} />
 
       <main className="cards-container mt-3">
-        {formValues.map(formValue => {
-          const {
-            firstName,
-            lastName,
-            birthDate,
-            country,
-            agree,
-            getNotifications,
-          } = formValue;
+        {loading && <div className="spinner-border" role="status" />}
+        {movies !== null && movies.length === 0 ? (
+          <div>No results found, please try another keyword!</div>
+        ) : (
+          !loading &&
+          movies?.map(movie => {
+            const { title, year, genres, description, image, id } = movie;
 
-          return (
-            <Card
-              firstName={firstName}
-              lastName={lastName}
-              birthDate={birthDate}
-              country={country}
-              agree={agree}
-              getNotifications={getNotifications}
-              key={birthDate}
-            />
-          );
-        })}
+            return (
+              <Card
+                id={id}
+                title={title}
+                year={year}
+                genres={genres}
+                description={description}
+                image={image}
+                key={id}
+              />
+            );
+          })
+        )}
       </main>
     </div>
   );

@@ -2,13 +2,13 @@
   width: 355px;
   margin: 1rem;
 
+  .director {
+    font-size: 0.9rem;
+  }
+
   ul {
     list-style: none;
     padding: 0;
-
-    &.directors {
-      font-size: 0.9rem;
-    }
 
     &.genres {
       text-transform: lowercase;

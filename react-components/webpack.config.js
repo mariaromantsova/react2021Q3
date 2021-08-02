@@ -1,9 +1,11 @@
+const webpack = require('webpack');
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+require('dotenv').config();
 
 const devServer = isDev =>
   !isDev
@@ -73,6 +75,9 @@ module.exports = ({ development }) => ({
     }),
     new CopyPlugin({
       patterns: [{ from: 'public' }],
+    }),
+    new webpack.DefinePlugin({
+      API_KEY: JSON.stringify(process.env.API_KEY),
     }),
   ],
   optimization: {

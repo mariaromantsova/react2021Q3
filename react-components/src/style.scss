@@ -31,4 +31,9 @@ $theme-colors: (
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  .spinner-border {
+    position: absolute;
+    top: 50%;
+  }
 }
