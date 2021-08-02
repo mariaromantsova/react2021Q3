@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card } from './components/Card/Card';
-import { SearchBar } from './components/SearchBar/SearchBar';
+import Card from './components/Card/Card';
+import SearchBar from './components/SearchBar/SearchBar';
 
 const App: React.FunctionComponent = () => {
   const [cards, setCards] = useState([]);
