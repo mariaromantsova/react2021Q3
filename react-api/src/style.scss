@@ -1,0 +1,52 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+
+$primary: #975bc9;
+
+$theme-colors: (
+  'primary': $primary,
+);
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+.form-control:focus,
+.form-select:focus {
+  border-color: $primary;
+  box-shadow: 0 0 0 0.25rem transparentize($primary, 0.7);
+}
+
+.form-check-input:checked {
+  background-color: $primary;
+  border-color: $primary;
+  box-shadow: 0 0 0 0.25rem transparentize($primary, 0.7);
+}
+
+.form-check-input:focus,
+.form-check-input:checked {
+  border-color: $primary;
+  box-shadow: 0 0 0 0.25rem transparentize($primary, 0.7);
+}
+
+.page-link,
+.page-link:hover,
+.page-link:focus {
+  color: $primary;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .spinner-border {
+    position: absolute;
+    top: 50%;
+  }
+}
