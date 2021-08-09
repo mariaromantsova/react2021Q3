@@ -15,7 +15,7 @@ const HomePage: React.FunctionComponent = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div className="container mt-5 d-flex flex-column justify-content-center align-items-center">
+    <>
       <SearchBar
         setMovies={setMovies}
         setLoading={setLoading}
@@ -62,7 +62,7 @@ const HomePage: React.FunctionComponent = () => {
           })
         )}
       </main>
-    </div>
+    </>
   );
 };
 
