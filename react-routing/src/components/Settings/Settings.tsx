@@ -12,7 +12,7 @@ const Settings: React.FunctionComponent<Props> = ({
   setResultsCount,
 }) => {
   return (
-    <div className="options col-3 d-flex justify-content-between">
+    <div className="options col-6 col-lg-3 d-flex justify-content-between">
       <div className="sortBy">
         <label htmlFor="sortBy" className="form-label">
           Sort by:

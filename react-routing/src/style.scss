@@ -9,6 +9,14 @@ $theme-colors: (
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-item:not(:last-child) {
+  margin-right: 20px;
+}
+
 .form-control:focus,
 .form-select:focus {
   border-color: $primary;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Card from './components/Card/Card';
-import Pagination from './components/Pagination/Pagination';
-import SearchBar from './components/SearchBar/SearchBar';
-import Settings from './components/Settings/Settings';
-import { CardModel } from './models/card-model';
+import Card from '../../components/Card/Card';
+import Pagination from '../../components/Pagination/Pagination';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import Settings from '../../components/Settings/Settings';
+import { CardModel } from '../../models/card-model';
 
-const App: React.FunctionComponent = () => {
+const HomePage: React.FunctionComponent = () => {
   const [movies, setMovies] = useState<CardModel[] | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -66,4 +66,4 @@ const App: React.FunctionComponent = () => {
   );
 };
 
-export default App;
+export default HomePage;
