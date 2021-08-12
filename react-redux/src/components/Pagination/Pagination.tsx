@@ -1,18 +1,17 @@
 import React, { MouseEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import * as actions from '../../redux/actions';
 
 type Props = {
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   pagesLimit: number;
-  totalPages: number;
-  currentPage: number;
 };
 
-const Pagination: React.FunctionComponent<Props> = ({
-  setCurrentPage,
-  currentPage,
-  totalPages,
-  pagesLimit,
-}) => {
+const Pagination: React.FunctionComponent<Props> = ({ pagesLimit }) => {
+  const dispatch = useDispatch();
+  const totalPages = useSelector((state: RootState) => state.totalPages);
+  const currentPage = useSelector((state: RootState) => state.currentPage);
+
   const getPagesGroup = () => {
     const start = Math.floor((currentPage - 1) / pagesLimit) * pagesLimit;
     const pages = [...Array(pagesLimit).keys()].map(page => start + page + 1);
@@ -26,7 +25,7 @@ const Pagination: React.FunctionComponent<Props> = ({
 
   const handleClick = (e: MouseEvent, page: number) => {
     e.preventDefault();
-    setCurrentPage(page);
+    dispatch(actions.setCurrentPage(page));
   };
 
   return (
@@ -38,7 +37,7 @@ const Pagination: React.FunctionComponent<Props> = ({
             className="page-link"
             onClick={(e: MouseEvent) => {
               e.preventDefault();
-              setCurrentPage(page => page - 1);
+              dispatch(actions.setCurrentPage(currentPage - 1));
             }}
           >
             Previous
@@ -67,7 +66,7 @@ const Pagination: React.FunctionComponent<Props> = ({
             type="button"
             className="page-link"
             onClick={() => {
-              setCurrentPage(page => page + 1);
+              dispatch(actions.setCurrentPage(currentPage + 1));
             }}
           >
             Next
