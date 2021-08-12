@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { DetailsModel } from '../models/details-model';
 
 declare const API_KEY: string;
 
@@ -25,3 +26,8 @@ export const getKeywordId = async (keyword: string): Promise<number> =>
           (result: { name: string }) => result.name === keyword,
         )?.id,
     );
+
+export const getMovie = (id: string): Promise<DetailsModel> =>
+  axios
+    .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+    .then(res => res.data);
