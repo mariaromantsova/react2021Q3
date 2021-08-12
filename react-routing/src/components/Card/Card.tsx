@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CardModel } from '../../models/card-model';
 import './Card.scss';
 
@@ -15,9 +16,9 @@ const Card: React.FunctionComponent<CardModel> = ({
       <img className="card-img-top" src={image} alt={title} />
 
       <div className="card-body">
-        <a href={`/details/${id}`} className="card-title link-dark">
+        <Link to={`/details/${id}`} className="card-title link-dark">
           {title}
-        </a>
+        </Link>
         <p className="card-text">
           <small className="text-muted">{year}</small>
         </p>
