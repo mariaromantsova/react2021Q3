@@ -1,24 +1,20 @@
-import React, { ChangeEvent, FormEvent, useCallback, useEffect } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../redux/actions';
 import { RootState } from '../../redux/store';
 
 type Props = {
   sortBy: string;
-  currentPage: number;
 };
 
-const SearchBar: React.FunctionComponent<Props> = ({ sortBy, currentPage }) => {
+const SearchBar: React.FunctionComponent<Props> = ({ sortBy }) => {
   const dispatch = useDispatch();
   const query = useSelector((state: RootState) => state.query);
+  const currentPage = useSelector((state: RootState) => state.currentPage);
 
-  const searchMovies = useCallback(async () => {
+  const searchMovies = () => {
     if (query) dispatch(actions.fetchCards(currentPage, query, sortBy));
-  }, [currentPage, dispatch, query, sortBy]);
-
-  useEffect(() => {
-    searchMovies();
-  }, [sortBy, currentPage, searchMovies]);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

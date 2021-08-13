@@ -1,4 +1,7 @@
 import React, { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../redux/actions';
+import { RootState } from '../../redux/store';
 
 type Props = {
   setSortBy: React.Dispatch<React.SetStateAction<string>>;
@@ -11,6 +14,15 @@ const Settings: React.FunctionComponent<Props> = ({
   resultsCount,
   setResultsCount,
 }) => {
+  const dispatch = useDispatch();
+  const query = useSelector((state: RootState) => state.query);
+  const currentPage = useSelector((state: RootState) => state.currentPage);
+
+  const onSortChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value);
+    if (query) dispatch(actions.fetchCards(currentPage, query, e.target.value));
+  };
+
   return (
     <div className="options col-6 col-lg-3 d-flex justify-content-between">
       <div className="sortBy">
@@ -21,9 +33,7 @@ const Settings: React.FunctionComponent<Props> = ({
           className="form-select"
           id="sortBy"
           name="sortBy"
-          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            setSortBy(e.target.value)
-          }
+          onChange={onSortChange}
         >
           <option value="popularity.desc">popularity</option>
           <option value="original_title.asc">title</option>

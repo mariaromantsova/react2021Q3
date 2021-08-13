@@ -13,18 +13,17 @@ const HomePage: React.FunctionComponent = () => {
   const movies = useSelector((state: RootState) => state.cards);
   const isLoading = useSelector((state: RootState) => state.isLoading);
   const totalPages = useSelector((state: RootState) => state.totalPages);
-  const currentPage = useSelector((state: RootState) => state.currentPage);
 
   return (
     <>
-      <SearchBar sortBy={sortBy} currentPage={currentPage} />
+      <SearchBar sortBy={sortBy} />
       <Settings
         setSortBy={setSortBy}
         resultsCount={resultsCount}
         setResultsCount={setResultsCount}
       />
 
-      {totalPages > 0 && <Pagination pagesLimit={10} />}
+      {totalPages > 0 && <Pagination pagesLimit={10} sortBy={sortBy} />}
 
       <main className="cards-container mt-3">
         {isLoading && <div className="spinner-border" role="status" />}
