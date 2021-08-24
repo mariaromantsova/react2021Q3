@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { DetailsModel } from '../models/details-model';
 
-declare const API_KEY: string;
-
 export const getGenres = async (genreIds: number[]): Promise<string[]> =>
   axios
     .get(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.API_KEY}&language=en-US`,
     )
     .then(
       res =>
@@ -18,7 +16,7 @@ export const getGenres = async (genreIds: number[]): Promise<string[]> =>
 export const getKeywordId = async (keyword: string): Promise<number> =>
   axios
     .get(
-      `https://api.themoviedb.org/3/search/keyword?api_key=${API_KEY}&query=${keyword}`,
+      `https://api.themoviedb.org/3/search/keyword?api_key=${process.env.API_KEY}&query=${keyword}`,
     )
     .then(
       res =>
@@ -29,5 +27,7 @@ export const getKeywordId = async (keyword: string): Promise<number> =>
 
 export const getMovie = (id: string): Promise<DetailsModel> =>
   axios
-    .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+    .get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}`,
+    )
     .then(res => res.data);

@@ -22,12 +22,17 @@ const SearchBar: React.FunctionComponent<Props> = ({ sortBy }) => {
   };
 
   return (
-    <form className="d-flex col-12 col-lg-6 mb-3" onSubmit={handleSubmit}>
+    <form
+      className="d-flex col-12 col-lg-6 mb-3"
+      data-testid="form"
+      onSubmit={handleSubmit}
+    >
       <input
         className="form-control"
         type="search"
         placeholder="Enter keyword..."
         value={query}
+        data-testid="input"
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           dispatch(actions.updateQuery(e.target.value))
         }

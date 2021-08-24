@@ -5,8 +5,6 @@ import { CardModel } from '../models/card-model';
 import { RootState } from './store';
 import { getGenres, getKeywordId } from '../shared/api';
 
-declare const API_KEY: string;
-
 export const updateQuery = (query: string): PayloadAction<string> => ({
   type: 'SET_QUERY',
   payload: query,
@@ -44,7 +42,9 @@ export const fetchCards = (
 
     await axios
       .get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}&with_watch_monetization_types=flatrate&with_keywords=${await getKeywordId(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${
+          process.env.API_KEY
+        }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}&with_watch_monetization_types=flatrate&with_keywords=${await getKeywordId(
           query,
         )}&sort_by=${sortBy}`,
       )
